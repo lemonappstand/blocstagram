@@ -7,6 +7,11 @@
 //
 
 #import "BLCImageTableViewController.h"
+#import "BLCDataSource.h"
+#import "BLCMedia.h"
+#import "BLCUser.h"
+#import "BLCComment.h"
+
 
 @interface BLCImageTableViewController ()
 
@@ -19,7 +24,6 @@
     self = [super initWithStyle:style];
     if (self) {
         
-        self.images = [NSMutableArray array];
         // Custom initialization
     }
     return self;
@@ -29,13 +33,6 @@
 {
     [super viewDidLoad];
     
-    for (int i = 1; i <= 10; i++) {
-        NSString *imageName = [NSString stringWithFormat:@"%d.jpg", i];
-        UIImage *image = [UIImage imageNamed:imageName];
-        if (image) {
-            [self.images addObject:image];
-        }
-    }
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"imageCell"];
 }
 
@@ -51,7 +48,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.images.count;
+    return [BLCDataSource sharedInstance].mediaItems.count;
 }
 
 
@@ -76,16 +73,16 @@
         
     }
     
-    UIImage *image = self.images[indexPath.row];
-    imageView.image = image;
-   
+    imageView.image = [self item:indexPath].image;
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIImage *image = self.images[indexPath.row];
-    return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
+   
+    UIImage *image = [self item:indexPath].image;
+    
+    return image.size.height / image.size.width * CGRectGetWidth(self.view.frame);
 }
 
 
@@ -98,18 +95,23 @@
 
 
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [self.images removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        // Delete the row from the data source
+//        
+//       
+//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }   
+//}
+
+- (BLCMedia *)item:(NSIndexPath *)indexPath {
+    BLCMedia *item = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
+    
+    return item;
 }
-
-
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath

@@ -10,6 +10,5 @@
 
 @interface BLCImageTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSMutableArray *images;
 
 @end
