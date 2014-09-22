@@ -12,6 +12,6 @@
 
 + (instancetype)sharedInstance;
 
-@property (nonatomic, strong) NSMutableArray *mediaItems;
+@property (nonatomic, strong, readonly) NSArray *mediaItems;
 
 @end
