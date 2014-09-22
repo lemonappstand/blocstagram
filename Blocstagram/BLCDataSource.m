@@ -13,7 +13,7 @@
 
 @interface BLCDataSource ()
 
-@property (nonatomic, strong) NSArray *mediaItems;
+//@property (nonatomic, strong) NSArray *mediaItems;
 
 @end
 
@@ -40,6 +40,7 @@
 }
 
 - (void)addRandomData {
+    
     NSMutableArray *randomMediaItems = [NSMutableArray array];
     
     for (int i = 1; i <= 10; i++) {
@@ -58,15 +59,15 @@
             for (int i = 0; i <= commentCount; i ++) {
                 BLCComment *randomComment = [self randomComment];
                 [randomComments addObject:randomComment];
-            
-        }
+            }
         
             media.comments = randomComments;
+            
         
             [randomMediaItems addObject:media];
+        }
     }
-}
-self.mediaItems = randomMediaItems;
+    self.mediaItems = randomMediaItems;
 }
 
 
