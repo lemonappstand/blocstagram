@@ -11,6 +11,13 @@
 #import "BLCComment.h"
 #import "BLCUser.h"
 
+static UIFont *lightFont;
+static UIFont *boldFont;
+static UIColor *usernameLabelGray;
+static UIColor *commentLabelGray;
+static UIColor *linkColor;
+static NSParagraphStyle *paragraphStyle;
+
 @interface BLCMediaTableViewCell ()
 
 @property (nonatomic, strong) UIImageView *mediaImageView;
@@ -20,17 +27,9 @@
 @property (nonatomic, strong) NSLayoutConstraint *imageHeightConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *usernameAndCaptionLabelHeightConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *commentLabelHeightConstraint;
-
+@property (nonatomic, strong) NSLayoutConstraint *imageWidthContraint;
 
 @end
-
-
-static UIFont *lightFont;
-static UIFont *boldFont;
-static UIColor *usernameLabelGray;
-static UIColor *commentLabelGray;
-static UIColor *linkColor;
-static NSParagraphStyle *paragraphStyle;
 
 
 @implementation BLCMediaTableViewCell
@@ -51,25 +50,28 @@ static NSParagraphStyle *paragraphStyle;
         }
         
         NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel);
-        
+
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_mediaImageView]|" options:kNilOptions metrics:nil views:viewDictionary]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel]|" options:kNilOptions metrics:nil views:viewDictionary]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentLabel]|" options:kNilOptions metrics:nil views:viewDictionary]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_mediaImageView][_usernameAndCaptionLabel][_commentLabel]" options:kNilOptions metrics:nil views:viewDictionary]];
-        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_mediaImageView]" options:kNilOptions metrics:nil views:viewDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_usernameAndCaptionLabel][_commentLabel]" options:kNilOptions metrics:nil views:viewDictionary]];
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentLabel]|" options:kNilOptions metrics:nil views:viewDictionary]];
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_mediaImageView][_usernameAndCaptionLabel][_commentLabel]" options:kNilOptions metrics:nil views:viewDictionary]];
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_usernameAndCaptionLabel]" options:kNilOptions metrics:nil views:viewDictionary]];
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_commentLabel]" options:kNilOptions metrics:nil views:viewDictionary]];
         self.imageHeightConstraint = [NSLayoutConstraint constraintWithItem:_mediaImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:100];
-        
+
         self.usernameAndCaptionLabelHeightConstraint = [NSLayoutConstraint constraintWithItem:_usernameAndCaptionLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:100];
-        
+
         self.commentLabelHeightConstraint = [NSLayoutConstraint constraintWithItem:_commentLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:100];
         
         [self.contentView addConstraints:@[self.imageHeightConstraint, self.usernameAndCaptionLabelHeightConstraint, self.commentLabelHeightConstraint]];
         
-        
-        
     }
     return self;
 }
+
 
 + (void)load {
     lightFont = [UIFont fontWithName:@"HelveticaNeue-Thin" size:11];
@@ -85,7 +87,6 @@ static NSParagraphStyle *paragraphStyle;
     mutableParagraphStyle.paragraphSpacingBefore = 5;
     
     paragraphStyle = mutableParagraphStyle;
-    
 }
 
 - (NSAttributedString *)usernameAndCaptionString {
@@ -167,7 +168,7 @@ static NSParagraphStyle *paragraphStyle;
     [layoutCell setNeedsLayout];
     [layoutCell layoutIfNeeded];
     
-    return CGRectGetMaxY(layoutCell.commentLabel.frame);
+    return MAX(CGRectGetMaxY(layoutCell.commentLabel.frame), CGRectGetMaxY(layoutCell.mediaImageView.frame)) ;
 }
 
 @end

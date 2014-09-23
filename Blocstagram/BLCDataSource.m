@@ -60,10 +60,9 @@
                 BLCComment *randomComment = [self randomComment];
                 [randomComments addObject:randomComment];
             }
-        
+            
             media.comments = randomComments;
             
-        
             [randomMediaItems addObject:media];
         }
     }
@@ -113,6 +112,16 @@
         [s appendFormat:@"%C", c];
     }
     return [NSString stringWithString:s];
+}
+
+- (void)removeMediaItem:(BLCMedia *)item {
+    [self removeMediaItemAtIndex:[self.mediaItems indexOfObject:item]];
+}
+
+- (void)removeMediaItemAtIndex:(NSUInteger)index {
+    NSMutableArray *mutableCopy = [self.mediaItems mutableCopy];
+    [mutableCopy removeObjectAtIndex:index];
+    self.mediaItems = mutableCopy;
 }
 
 @end
