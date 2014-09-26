@@ -117,9 +117,12 @@
 //    [self infiniteScrollIfNecessary];
 //}
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self infiniteScrollIfNecessary];
+    
 }
+
+
 
 #pragma mark - Table view data source
 
