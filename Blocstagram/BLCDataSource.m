@@ -128,7 +128,7 @@
             }];
         } else {
             self.isRefreshing = NO;
-            }
+        }
     }
 }
 
