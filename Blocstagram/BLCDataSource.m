@@ -114,19 +114,24 @@
     self.thereAreNoMoreOlderMessages = NO;
     if (self.isRefreshing == NO) {
         self.isRefreshing = YES;
-        
-        NSString *minID = [[self.mediaItems firstObject] idNumber];
-        NSDictionary *parameters = @{@"min_id": minID};
-    
-    [self populateDataWithParameters:parameters completionHandler:^(NSError *error) {
-        self.isRefreshing = NO;
-        
-        if (completionHandler) {
-            completionHandler(error);
-        }
-    }];
+
+        if (!self.mediaItems) {
+            NSString *minID = [[self.mediaItems firstObject] idNumber];
+            NSDictionary *parameters = @{@"min_id": minID};
+            
+            [self populateDataWithParameters:parameters completionHandler:^(NSError *error) {
+            self.isRefreshing = NO;
+          
+                if (completionHandler) {
+                    completionHandler(error);
+                }
+            }];
+        } else {
+            self.isRefreshing = NO;
+            }
     }
 }
+
 
 - (void)requestOldItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler {
     if (self.isLoadingOlderItems == NO && self.thereAreNoMoreOlderMessages == NO) {
