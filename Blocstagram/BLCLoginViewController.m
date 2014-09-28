@@ -52,6 +52,7 @@ NSString *const BLCLoginViewControllerDidGetAccessTokenNotification = @"BLCLogin
     //
     
     //    @"https://instagram.com/oauth/authorize/?client_id=CLIENT-ID%@&redirect_uri=REDIRECT-URI%@&response_type=token",
+    
     NSURL *url = [NSURL URLWithString:urlString];
     
     if (url) {
@@ -69,9 +70,10 @@ NSString *const BLCLoginViewControllerDidGetAccessTokenNotification = @"BLCLogin
 }
 
 - (NSString *)redirectURI {
+    
 //http://your-redirect-uri#access_token=ACCESS-TOKEN
     
-    return @"http://www.lemonappstand.com"
+    return @"http://lemonappstand.com"
 ;
 }
 
@@ -105,10 +107,9 @@ NSString *const BLCLoginViewControllerDidGetAccessTokenNotification = @"BLCLogin
     NSString *urlString = request.URL.absoluteString;
     if ([urlString hasPrefix:[self redirectURI]]) {
         NSRange rangeOfAccessTokenParameter = [urlString rangeOfString:@"access_token="];
-        NSUInteger indexOfTokentStarting = rangeOfAccessTokenParameter.location + rangeOfAccessTokenParameter.length;
-        NSString *accessToken = [urlString substringToIndex:indexOfTokentStarting];
+        NSUInteger indexOfTokenStarting = rangeOfAccessTokenParameter.location + rangeOfAccessTokenParameter.length;
+        NSString *accessToken = [urlString substringFromIndex:indexOfTokenStarting];
         [[NSNotificationCenter defaultCenter] postNotificationName:BLCLoginViewControllerDidGetAccessTokenNotification object:accessToken];
-        
         return NO;
     }
     return YES;
