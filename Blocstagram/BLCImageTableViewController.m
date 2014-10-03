@@ -12,10 +12,15 @@
 #import "BLCUser.h"
 #import "BLCComment.h"
 #import "BLCMediaTableViewCell.h"
+#import "BLCMediaFullScreenViewController.h"
+#import "BLCMediaFullScreenAnimator.h"
 
 
-@interface BLCImageTableViewController ()
+@interface BLCImageTableViewController () <BLCMediaTableViewCellDelegate, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate>
 
+@property (nonatomic, weak) UIImageView *lastTappedImageView;
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (nonatomic, strong) NSMutableArray *itemsToShare;
 
 @end
 
@@ -42,6 +47,10 @@
     
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
     
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(doShareButton:)];
+    
+    self.navigationItem.rightBarButtonItem = shareButton;
+    self.itemsToShare = [[NSMutableArray alloc] init];
 }
 
 - (void)dealloc {
@@ -54,6 +63,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)doShareButton:(id)sender {
+
+    if (self.itemsToShare.count > 0) {
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:self.itemsToShare applicationActivities:nil];
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
+}
+
+
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == [BLCDataSource sharedInstance] && [keyPath isEqualToString:@"mediaItems"]) {
@@ -159,6 +178,7 @@
 //    
     
     BLCMediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
+    cell.delegate = self;
     BLCMedia *item = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
     cell.mediaItem = item;
     
@@ -212,6 +232,52 @@
     return [BLCDataSource sharedInstance].mediaItems;
 }
 
+#pragma mark - BLCMediaTableViewCellDelegate 
+
+- (void)cell:(BLCMediaTableViewCell *)cell didTapImageView:(UIImageView *)imageView {
+    self.lastTappedImageView = imageView;
+    
+    BLCMediaFullScreenViewController *fullScreenVC = [[BLCMediaFullScreenViewController alloc] initWithMedia:cell.mediaItem];
+    
+    fullScreenVC.transitioningDelegate = self;
+    fullScreenVC.modalPresentationStyle = UIModalPresentationCustom;
+    
+    [self presentViewController:fullScreenVC animated:YES completion:nil];
+   
+}
+
+#pragma mark - UIViewControllerTransitionDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    BLCMediaFullScreenAnimator *animator = [BLCMediaFullScreenAnimator new];
+    animator.presenting = YES;
+    animator.cellImageView = self.lastTappedImageView;
+    return animator;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    BLCMediaFullScreenAnimator *animator = [BLCMediaFullScreenAnimator new];
+    animator.cellImageView = self.lastTappedImageView;
+    return animator;
+}
+
+- (void)cell:(BLCMediaTableViewCell *)cell didLongPressImageView:(UIImageView *)imageView {
+  self.itemsToShare = [NSMutableArray array];
+    
+    if (cell.mediaItem.caption.length > 0) {
+        [self.itemsToShare addObject:cell.mediaItem.caption];
+    }
+    
+    if (cell.mediaItem.image) {
+        [self.itemsToShare addObject:cell.mediaItem.image];
+        
+    }
+    
+    if (self.itemsToShare.count > 0) {
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:self.itemsToShare applicationActivities:nil];
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
+}
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
