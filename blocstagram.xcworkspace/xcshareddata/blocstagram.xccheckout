@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>0DF1148E-231C-4492-859A-9491EE7E0911</string>
+	<string>47D5779A-362E-484C-BCD3-DB80B1E92073</string>
 	<key>IDESourceControlProjectName</key>
 	<string>blocstagram</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/lemonappstand/blocstagram.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>blocstagram.xcodeproj/project.xcworkspace</string>
+	<string>blocstagram.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>9787D1AC-A07D-4A95-BDBC-A0F0F7F3EFA7</key>
-		<string>../..</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/lemonappstand/blocstagram.git</string>
