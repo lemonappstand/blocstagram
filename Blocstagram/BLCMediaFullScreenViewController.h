@@ -10,6 +10,7 @@
 
 @class BLCMedia;
 
+
 @interface BLCMediaFullScreenViewController : UIViewController
 
 @property (nonatomic, strong) UIScrollView *scrollView;
