@@ -47,9 +47,6 @@
     
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
     
-    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(doShareButton:)];
-    
-    self.navigationItem.rightBarButtonItem = shareButton;
     self.itemsToShare = [[NSMutableArray alloc] init];
 }
 
@@ -64,13 +61,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)doShareButton:(id)sender {
-
-    if (self.itemsToShare.count > 0) {
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:self.itemsToShare applicationActivities:nil];
-        [self presentViewController:activityVC animated:YES completion:nil];
-    }
-}
 
 
 

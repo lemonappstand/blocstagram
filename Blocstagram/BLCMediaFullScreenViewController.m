@@ -8,13 +8,24 @@
 
 #import "BLCMediaFullScreenViewController.h"
 #import "BLCMedia.h"
+#import "BLCImageTableViewController.h"
 
-@interface BLCMediaFullScreenViewController () <UIScrollViewDelegate>
+
+
+
+
+@interface BLCMediaFullScreenViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) BLCMedia *media;
 
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
+@property  (nonatomic, strong) NSMutableArray *itemsToShare;
+
+@property (nonatomic, weak) id <UIGestureRecognizerDelegate> delegate;
+
+
+@property (nonatomic, strong) UIButton *shareButton;
 
 @end
 
@@ -36,6 +47,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+       
     }
     return self;
 }
@@ -67,7 +79,17 @@
     [self.scrollView addGestureRecognizer:self.tap];
     [self.scrollView addGestureRecognizer:self.doubleTap];
     
-}
+    self.shareButton = [[UIButton alloc] initWithFrame:CGRectMake(220, 0, 100, 50)];
+    self.shareButton.backgroundColor = [UIColor whiteColor];
+    [self.shareButton addTarget:self action:@selector(goShareButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.shareButton setTitle:@"Share" forState:UIControlStateNormal];
+    [self.scrollView addSubview:self.shareButton];
+    
+    self.itemsToShare = [[NSMutableArray alloc] init];
+    
+    
+   }
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
@@ -80,10 +102,13 @@
     CGFloat scaleHeight = scrollViewFrameSize.height / scrollViewContentSize.height;
     CGFloat minScale = MIN(scaleWidth, scaleHeight);
     
+   
+    
     self.scrollView.minimumZoomScale = minScale;
     self.scrollView.maximumZoomScale = 1;
     
 }
+
 
 - (void)centerScrollView {
     [self.imageView sizeToFit];
@@ -104,6 +129,15 @@
     
     self.imageView.frame = contentsFrame;
 }
+
+
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//    // Disallow recognition of tap gestures in the segmented control.
+//    if ([touch.view isKindOfClass:[UIButton class]]) {
+//        return NO;
+//    }
+//    return YES;
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -143,12 +177,20 @@
         CGFloat height = scrollViewSize.height / self.scrollView.maximumZoomScale;
         CGFloat x = locationPoint.x - (width / 2);
         CGFloat y = locationPoint.y - (height / 2);
-        
         [self.scrollView zoomToRect:CGRectMake(x, y, width, height) animated:YES];
         
     } else {
         
         [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES];
+    }
+}
+
+- (IBAction)goShareButton:(id)sender {
+    [self.itemsToShare addObject:self.imageView.image];
+    if (self.itemsToShare > 0) {
+        NSLog(@"%@", self.itemsToShare);
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:self.itemsToShare applicationActivities:nil];
+        [self presentViewController:activityVC animated:YES completion:nil];
     }
 }
 /*

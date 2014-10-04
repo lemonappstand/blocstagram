@@ -11,6 +11,9 @@
 
 @implementation BLCMediaFullScreenAnimator
 
+ 
+
+
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
     return 0.2;
 }
