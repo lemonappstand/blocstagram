@@ -162,9 +162,8 @@ static NSParagraphStyle *paragraphStyle;
     } else {
         self.imageHeightConstraint.constant = 0;
     }
-    
-    
 }
+
 - (void)awakeFromNib
 {
     // Initialization code
