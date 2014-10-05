@@ -23,6 +23,7 @@
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *twoFingerTouch;
 
 
 @end
@@ -53,6 +54,10 @@ static NSParagraphStyle *paragraphStyle;
         self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressFired:)];
         self.longPressGestureRecognizer.delegate = self;
         [self.mediaImageView addGestureRecognizer:self.longPressGestureRecognizer];
+        
+        self.twoFingerTouch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doTwoFingerTouch)];
+        [self.twoFingerTouch setNumberOfTouchesRequired:2];
+        [self.mediaImageView addGestureRecognizer:self.twoFingerTouch];
         
         self.usernameAndCaptionLabel = [[UILabel alloc] init];
         self.commentLabel = [[UILabel alloc] init];
@@ -178,6 +183,11 @@ static NSParagraphStyle *paragraphStyle;
     self.usernameAndCaptionLabel.attributedText = [self usernameAndCaptionString];
     self.commentLabel.attributedText = [self commentString];
     
+}
+
+- (void)doTwoFingerTouch {
+    [self setMediaItem:self.mediaItem];
+    NSLog(@"Hey you touched me");
 }
 
 + (CGFloat)heightForMediaItem:(BLCMedia *)mediaItem width:(CGFloat)width {

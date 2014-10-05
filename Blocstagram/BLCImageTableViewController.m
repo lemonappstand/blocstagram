@@ -20,7 +20,6 @@
 
 @property (nonatomic, weak) UIImageView *lastTappedImageView;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
-@property (nonatomic, strong) UITapGestureRecognizer *twoFingerTouch;
 @property (nonatomic, strong) NSMutableArray *itemsToShare;
 
 @end
@@ -50,10 +49,7 @@
     
     self.itemsToShare = [[NSMutableArray alloc] init];
     
-    self.twoFingerTouch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doTwoFingerTouch)];
-    [self.twoFingerTouch setNumberOfTouchesRequired:2];
-    [self.view addGestureRecognizer:self.twoFingerTouch];
-    
+        
 }
 
 - (void)dealloc {
@@ -275,14 +271,8 @@
     }
 }
 
-- (void)doTwoFingerTouch {
-    
-    [[BLCDataSource sharedInstance] requestNewItemsWithCompletionHandler:^(NSError *error) {
-//    BLCMediaTableViewCell *currentCell = [[BLCMediaTableViewCell alloc] init];
-//    imageView.image = currentCell.mediaItem.image;
-    NSLog(@"Hey you touched me");
-    }];
-}
+
+
 
 /*
 // Override to support rearranging the table view.
