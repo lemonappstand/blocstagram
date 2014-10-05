@@ -124,9 +124,10 @@
 
 #pragma mark - UIScrollViewDelegate
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    [self infiniteScrollIfNecessary];
-//}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    scrollView.bounces = NO;
+    
+}
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self infiniteScrollIfNecessary];
@@ -271,7 +272,12 @@
     }
 }
 
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    BLCMedia *mediaItem = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
+    if (mediaItem.downloadState == BLCMediaDownloadStateNeedsImage) {
+        [[BLCDataSource sharedInstance] downloadImageForMediaItem:mediaItem];
+    }
+}
 
 
 /*
