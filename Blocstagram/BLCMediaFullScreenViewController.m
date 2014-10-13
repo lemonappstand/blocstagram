@@ -25,7 +25,7 @@
 @property (nonatomic, weak) id <UIGestureRecognizerDelegate> delegate;
 
 
-@property (nonatomic, strong) UIButton *shareButton;
+//@property (nonatomic, strong) UIButton *shareButton;
 
 @end
 
@@ -79,12 +79,12 @@
     [self.scrollView addGestureRecognizer:self.tap];
     [self.scrollView addGestureRecognizer:self.doubleTap];
     
-    self.shareButton = [[UIButton alloc] initWithFrame:CGRectMake(220, 0, 100, 50)];
-    self.shareButton.backgroundColor = [UIColor whiteColor];
-    [self.shareButton addTarget:self action:@selector(goShareButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.shareButton setTitle:@"Share" forState:UIControlStateNormal];
-    [self.scrollView addSubview:self.shareButton];
+//    self.shareButton = [[UIButton alloc] initWithFrame:CGRectMake(220, 0, 100, 50)];
+//    self.shareButton.backgroundColor = [UIColor whiteColor];
+//    [self.shareButton addTarget:self action:@selector(goShareButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [self.shareButton setTitle:@"Share" forState:UIControlStateNormal];
+//    [self.scrollView addSubview:self.shareButton];
     
     self.itemsToShare = [[NSMutableArray alloc] init];
     
@@ -185,14 +185,14 @@
     }
 }
 
-- (IBAction)goShareButton:(id)sender {
-    [self.itemsToShare addObject:self.imageView.image];
-    if (self.itemsToShare > 0) {
-        NSLog(@"%@", self.itemsToShare);
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:self.itemsToShare applicationActivities:nil];
-        [self presentViewController:activityVC animated:YES completion:nil];
-    }
-}
+//- (IBAction)goShareButton:(id)sender {
+//    [self.itemsToShare addObject:self.imageView.image];
+//    if (self.itemsToShare > 0) {
+//        NSLog(@"%@", self.itemsToShare);
+//        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:self.itemsToShare applicationActivities:nil];
+//        [self presentViewController:activityVC animated:YES completion:nil];
+//    }
+//}
 /*
 #pragma mark - Navigation
 
