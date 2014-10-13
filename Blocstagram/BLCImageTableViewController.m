@@ -16,7 +16,7 @@
 #import "BLCMediaFullScreenAnimator.h"
 
 
-@interface BLCImageTableViewController () <BLCMediaTableViewCellDelegate, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate>
+@interface BLCImageTableViewController () <BLCMediaTableViewCellDelegate, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, weak) UIImageView *lastTappedImageView;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
@@ -126,15 +126,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     scrollView.bounces = NO;
-    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self infiniteScrollIfNecessary];
     
 }
-
-
 
 #pragma mark - Table view data source
 
@@ -237,6 +234,11 @@
     
     [self presentViewController:fullScreenVC animated:YES completion:nil];
    
+}
+
+
+- (void) cellDidPressLikeButton:(BLCMediaTableViewCell *)cell {
+    [[BLCDataSource sharedInstance] toggleLikeOnMediaItem:cell.mediaItem];
 }
 
 #pragma mark - UIViewControllerTransitionDelegate

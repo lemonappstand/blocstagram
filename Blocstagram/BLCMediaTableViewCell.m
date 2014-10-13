@@ -10,6 +10,8 @@
 #import "BLCMedia.h"
 #import "BLCComment.h"
 #import "BLCUser.h"
+#import "BLCDataSource.h"
+#import "BLCLikeButton.h"
 
 @interface BLCMediaTableViewCell () <UIGestureRecognizerDelegate>
 
@@ -24,6 +26,10 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, strong) UITapGestureRecognizer *twoFingerTouch;
+
+@property (nonatomic, strong) BLCLikeButton *likeButton;
+@property (nonatomic, strong) UILabel *likeLabel;
+
 
 
 @end
@@ -55,7 +61,7 @@ static NSParagraphStyle *paragraphStyle;
         self.longPressGestureRecognizer.delegate = self;
         [self.mediaImageView addGestureRecognizer:self.longPressGestureRecognizer];
         
-        self.twoFingerTouch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doTwoFingerTouch)];
+        self.twoFingerTouch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doTwoFingerTouch:)];
         [self.twoFingerTouch setNumberOfTouchesRequired:2];
         [self.mediaImageView addGestureRecognizer:self.twoFingerTouch];
         
@@ -63,15 +69,25 @@ static NSParagraphStyle *paragraphStyle;
         self.commentLabel = [[UILabel alloc] init];
         self.commentLabel.numberOfLines = 0;
         
-        for (UIView *view in @[self.mediaImageView, self.usernameAndCaptionLabel, self.commentLabel]) {
+        self.likeButton = [[BLCLikeButton alloc] init];
+        [self.likeButton addTarget:self action:@selector(likePressed:) forControlEvents:UIControlEventTouchUpInside];
+        self.likeButton.backgroundColor = usernameLabelGray;
+        
+        self.likeLabel = [[UILabel alloc] init];
+        
+        
+        for (UIView *view in @[self.mediaImageView, self.usernameAndCaptionLabel, self.commentLabel, self.likeButton, self.likeLabel]) {
             [self.contentView addSubview:view];
             view.translatesAutoresizingMaskIntoConstraints = NO;
         }
         
-        NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel);
+        
+        NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel, _likeButton, _likeLabel);
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_mediaImageView]|" options:kNilOptions metrics:nil views:viewDictionary]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel]|" options:kNilOptions metrics:nil views:viewDictionary]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_likeLabel][_likeButton(==38)]" options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:nil views:viewDictionary]];
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_likeLabel][_likeButton]|" options:NSLayoutRelationEqual metrics:nil views:viewDictionary]];
+        
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentLabel]|" options:kNilOptions metrics:nil views:viewDictionary]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_mediaImageView][_usernameAndCaptionLabel][_commentLabel]" options:kNilOptions metrics:nil views:viewDictionary]];
         
@@ -149,6 +165,7 @@ static NSParagraphStyle *paragraphStyle;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    
     CGSize maxSize = CGSizeMake(CGRectGetWidth(self.bounds), CGFLOAT_MAX);
     CGSize usernameLabelSize = [self.usernameAndCaptionLabel sizeThatFits:maxSize];
     CGSize commentLabelSize = [self.commentLabel sizeThatFits:maxSize];
@@ -181,13 +198,17 @@ static NSParagraphStyle *paragraphStyle;
     self.mediaImageView.image = _mediaItem.image;
     self.usernameAndCaptionLabel.attributedText = [self usernameAndCaptionString];
     self.commentLabel.attributedText = [self commentString];
+    self.likeButton.likeButtonState = mediaItem.likeState;
     
 }
 
-- (void)doTwoFingerTouch {
-    [self setMediaItem:self.mediaItem];
-    NSLog(@"Hey you touched me");
+
+
+- (void)doTwoFingerTouch: (BLCMedia *)mediaItem {
+    
+    [[BLCDataSource sharedInstance] downloadImageForMediaItem:mediaItem];
 }
+
 
 + (CGFloat)heightForMediaItem:(BLCMedia *)mediaItem width:(CGFloat)width {
     BLCMediaTableViewCell *layoutCell = [[BLCMediaTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"layoutCell"];
@@ -218,11 +239,39 @@ static NSParagraphStyle *paragraphStyle;
 }
 
 
+#pragma mark - Liking
+
+- (void)likePressed:(UIButton *)sender {
+    [self.delegate cellDidPressLikeButton:self];
+    NSInteger likes = _mediaItem.likeCount;
+    NSInteger likeState = (BLCLikeState)_likeButton.likeButtonState;
+                                  
+    if (likeState == 0) {
+        likes = likes +1;
+        NSString *likeText = [NSString stringWithFormat:@"%li", (long)likes];
+        self.likeLabel.text = likeText;
+        NSLog(@"%@", likeText);
+        NSLog(@"%li", (long)likeState);
+        
+    } else if (likeState == 2) {
+        likes = likes - 1;
+        NSString *likeText = [NSString stringWithFormat:@"%li", (long)likes];
+        self.likeLabel.text = likeText;
+        NSLog(@"%@", likeText);
+        NSLog(@"%li", (long)likeState);
+    }
+    
+    _mediaItem.likeCount = likes;
+}
+
+
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return self.isEditing == NO;
 }
+
+
 
 
 
