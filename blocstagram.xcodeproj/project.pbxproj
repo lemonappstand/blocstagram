@@ -41,6 +41,7 @@
 		979C38D819E9DF3E000038B7 /* heart-full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38D219E9DF3E000038B7 /* heart-full@2x.png */; };
 		979C38D919E9DF3E000038B7 /* angle-mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38D319E9DF3E000038B7 /* angle-mask.png */; };
 		979C38DA19E9DF3E000038B7 /* angle-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38D419E9DF3E000038B7 /* angle-mask@2x.png */; };
+		979C38E019EC9784000038B7 /* BLCComposeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979C38DF19EC9784000038B7 /* BLCComposeCommentView.m */; };
 		97C1F31E19C7C9BE001A8A32 /* BLCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C1F31D19C7C9BE001A8A32 /* BLCUser.m */; };
 		97C1F32119C7CA72001A8A32 /* BLCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C1F32019C7CA72001A8A32 /* BLCMedia.m */; };
 		97C1F32419C7D00A001A8A32 /* BLCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C1F32319C7D00A001A8A32 /* BLCComment.m */; };
@@ -103,6 +104,8 @@
 		979C38D219E9DF3E000038B7 /* heart-full@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-full@2x.png"; sourceTree = "<group>"; };
 		979C38D319E9DF3E000038B7 /* angle-mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angle-mask.png"; sourceTree = "<group>"; };
 		979C38D419E9DF3E000038B7 /* angle-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angle-mask@2x.png"; sourceTree = "<group>"; };
+		979C38DE19EC9784000038B7 /* BLCComposeCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCComposeCommentView.h; sourceTree = "<group>"; };
+		979C38DF19EC9784000038B7 /* BLCComposeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCComposeCommentView.m; sourceTree = "<group>"; };
 		97C1F31C19C7C9BE001A8A32 /* BLCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLCUser.h; path = ../BLCUser.h; sourceTree = "<group>"; };
 		97C1F31D19C7C9BE001A8A32 /* BLCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLCUser.m; path = ../BLCUser.m; sourceTree = "<group>"; };
 		97C1F31F19C7CA72001A8A32 /* BLCMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCMedia.h; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				979C38CA19E9B8FA000038B7 /* BLCCircleSpinnerView.m */,
 				979C38CC19E9BFD0000038B7 /* BLCLikeButton.h */,
 				979C38CD19E9BFD0000038B7 /* BLCLikeButton.m */,
+				979C38DE19EC9784000038B7 /* BLCComposeCommentView.h */,
+				979C38DF19EC9784000038B7 /* BLCComposeCommentView.m */,
 				9759041819C77AC3005C85F1 /* Images.xcassets */,
 				979C38CF19E9DF3E000038B7 /* heart-empty.png */,
 				979C38D019E9DF3E000038B7 /* heart-empty@2x.png */,
@@ -438,6 +443,7 @@
 				97C1F32A19CD2B92001A8A32 /* BLCMediaTableViewCell.m in Sources */,
 				97C1F32719C7D0C8001A8A32 /* BLCDataSource.m in Sources */,
 				97C1F32D19D5E84B001A8A32 /* BLCLoginViewController.m in Sources */,
+				979C38E019EC9784000038B7 /* BLCComposeCommentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
