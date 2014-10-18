@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		087E43C88D83EAA40CA72960 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F990F51171163CAE14937554 /* libPods.a */; };
+		97305CFD19F1B63E000681A3 /* BLCCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97305CFC19F1B63E000681A3 /* BLCCameraViewController.m */; };
+		97305D0319F1DAE3000681A3 /* UIImage+BLCImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 97305D0219F1DAE3000681A3 /* UIImage+BLCImageUtilities.m */; };
 		9759040719C77AC3005C85F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9759040619C77AC3005C85F1 /* Foundation.framework */; };
 		9759040919C77AC3005C85F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9759040819C77AC3005C85F1 /* CoreGraphics.framework */; };
 		9759040B19C77AC3005C85F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9759040A19C77AC3005C85F1 /* UIKit.framework */; };
@@ -42,6 +44,15 @@
 		979C38D919E9DF3E000038B7 /* angle-mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38D319E9DF3E000038B7 /* angle-mask.png */; };
 		979C38DA19E9DF3E000038B7 /* angle-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38D419E9DF3E000038B7 /* angle-mask@2x.png */; };
 		979C38E019EC9784000038B7 /* BLCComposeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979C38DF19EC9784000038B7 /* BLCComposeCommentView.m */; };
+		979C38E919EF30F2000038B7 /* road.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38E119EF30F2000038B7 /* road.png */; };
+		979C38EA19EF30F2000038B7 /* road@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38E219EF30F2000038B7 /* road@2x.png */; };
+		979C38EB19EF30F2000038B7 /* x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38E319EF30F2000038B7 /* x.png */; };
+		979C38EC19EF30F2000038B7 /* x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38E419EF30F2000038B7 /* x@2x.png */; };
+		979C38ED19EF30F2000038B7 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38E519EF30F2000038B7 /* camera.png */; };
+		979C38EE19EF30F2000038B7 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38E619EF30F2000038B7 /* camera@2x.png */; };
+		979C38EF19EF30F2000038B7 /* rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38E719EF30F2000038B7 /* rotate.png */; };
+		979C38F019EF30F2000038B7 /* rotate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C38E819EF30F2000038B7 /* rotate@2x.png */; };
+		979C38F319EF313E000038B7 /* BLCCameraToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 979C38F219EF313E000038B7 /* BLCCameraToolbar.m */; };
 		97C1F31E19C7C9BE001A8A32 /* BLCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C1F31D19C7C9BE001A8A32 /* BLCUser.m */; };
 		97C1F32119C7CA72001A8A32 /* BLCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C1F32019C7CA72001A8A32 /* BLCMedia.m */; };
 		97C1F32419C7D00A001A8A32 /* BLCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C1F32319C7D00A001A8A32 /* BLCComment.m */; };
@@ -62,6 +73,10 @@
 
 /* Begin PBXFileReference section */
 		87E5BCFA4AC1C14AF04E4AF3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		97305CFB19F1B63E000681A3 /* BLCCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLCCameraViewController.h; path = Blocstagram/BLCCameraViewController.h; sourceTree = SOURCE_ROOT; };
+		97305CFC19F1B63E000681A3 /* BLCCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLCCameraViewController.m; path = Blocstagram/BLCCameraViewController.m; sourceTree = SOURCE_ROOT; };
+		97305D0119F1DAE3000681A3 /* UIImage+BLCImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BLCImageUtilities.h"; path = "Blocstagram/UIImage+BLCImageUtilities.h"; sourceTree = SOURCE_ROOT; };
+		97305D0219F1DAE3000681A3 /* UIImage+BLCImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+BLCImageUtilities.m"; path = "Blocstagram/UIImage+BLCImageUtilities.m"; sourceTree = SOURCE_ROOT; };
 		9759040319C77AC3005C85F1 /* blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9759040619C77AC3005C85F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9759040819C77AC3005C85F1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -106,6 +121,16 @@
 		979C38D419E9DF3E000038B7 /* angle-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angle-mask@2x.png"; sourceTree = "<group>"; };
 		979C38DE19EC9784000038B7 /* BLCComposeCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCComposeCommentView.h; sourceTree = "<group>"; };
 		979C38DF19EC9784000038B7 /* BLCComposeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCComposeCommentView.m; sourceTree = "<group>"; };
+		979C38E119EF30F2000038B7 /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
+		979C38E219EF30F2000038B7 /* road@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "road@2x.png"; sourceTree = "<group>"; };
+		979C38E319EF30F2000038B7 /* x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x.png; sourceTree = "<group>"; };
+		979C38E419EF30F2000038B7 /* x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x@2x.png"; sourceTree = "<group>"; };
+		979C38E519EF30F2000038B7 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		979C38E619EF30F2000038B7 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
+		979C38E719EF30F2000038B7 /* rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotate.png; sourceTree = "<group>"; };
+		979C38E819EF30F2000038B7 /* rotate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rotate@2x.png"; sourceTree = "<group>"; };
+		979C38F119EF313E000038B7 /* BLCCameraToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLCCameraToolbar.h; path = Blocstagram/BLCCameraToolbar.h; sourceTree = SOURCE_ROOT; };
+		979C38F219EF313E000038B7 /* BLCCameraToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLCCameraToolbar.m; path = Blocstagram/BLCCameraToolbar.m; sourceTree = SOURCE_ROOT; };
 		97C1F31C19C7C9BE001A8A32 /* BLCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLCUser.h; path = ../BLCUser.h; sourceTree = "<group>"; };
 		97C1F31D19C7C9BE001A8A32 /* BLCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLCUser.m; path = ../BLCUser.m; sourceTree = "<group>"; };
 		97C1F31F19C7CA72001A8A32 /* BLCMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCMedia.h; sourceTree = "<group>"; };
@@ -209,7 +234,21 @@
 				979C38CD19E9BFD0000038B7 /* BLCLikeButton.m */,
 				979C38DE19EC9784000038B7 /* BLCComposeCommentView.h */,
 				979C38DF19EC9784000038B7 /* BLCComposeCommentView.m */,
+				979C38F119EF313E000038B7 /* BLCCameraToolbar.h */,
+				979C38F219EF313E000038B7 /* BLCCameraToolbar.m */,
+				97305CFB19F1B63E000681A3 /* BLCCameraViewController.h */,
+				97305CFC19F1B63E000681A3 /* BLCCameraViewController.m */,
+				97305D0119F1DAE3000681A3 /* UIImage+BLCImageUtilities.h */,
+				97305D0219F1DAE3000681A3 /* UIImage+BLCImageUtilities.m */,
 				9759041819C77AC3005C85F1 /* Images.xcassets */,
+				979C38E119EF30F2000038B7 /* road.png */,
+				979C38E219EF30F2000038B7 /* road@2x.png */,
+				979C38E319EF30F2000038B7 /* x.png */,
+				979C38E419EF30F2000038B7 /* x@2x.png */,
+				979C38E519EF30F2000038B7 /* camera.png */,
+				979C38E619EF30F2000038B7 /* camera@2x.png */,
+				979C38E719EF30F2000038B7 /* rotate.png */,
+				979C38E819EF30F2000038B7 /* rotate@2x.png */,
 				979C38CF19E9DF3E000038B7 /* heart-empty.png */,
 				979C38D019E9DF3E000038B7 /* heart-empty@2x.png */,
 				979C38D119E9DF3E000038B7 /* heart-full.png */,
@@ -365,19 +404,27 @@
 				979C38D619E9DF3E000038B7 /* heart-empty@2x.png in Resources */,
 				979C38D819E9DF3E000038B7 /* heart-full@2x.png in Resources */,
 				9759044C19C77C32005C85F1 /* 8.jpg in Resources */,
+				979C38ED19EF30F2000038B7 /* camera.png in Resources */,
 				9759044819C77C32005C85F1 /* 4.jpg in Resources */,
 				9759044719C77C32005C85F1 /* 3.jpg in Resources */,
 				9759044A19C77C32005C85F1 /* 6.jpg in Resources */,
 				9759044519C77C32005C85F1 /* 1.jpg in Resources */,
 				979C38DA19E9DF3E000038B7 /* angle-mask@2x.png in Resources */,
+				979C38EB19EF30F2000038B7 /* x.png in Resources */,
+				979C38F019EF30F2000038B7 /* rotate@2x.png in Resources */,
+				979C38EE19EF30F2000038B7 /* camera@2x.png in Resources */,
 				9759041119C77AC3005C85F1 /* InfoPlist.strings in Resources */,
 				9759044919C77C32005C85F1 /* 5.jpg in Resources */,
 				979C38D719E9DF3E000038B7 /* heart-full.png in Resources */,
+				979C38EC19EF30F2000038B7 /* x@2x.png in Resources */,
+				979C38E919EF30F2000038B7 /* road.png in Resources */,
 				9759044B19C77C32005C85F1 /* 7.jpg in Resources */,
 				979C38D919E9DF3E000038B7 /* angle-mask.png in Resources */,
 				9759044619C77C32005C85F1 /* 2.jpg in Resources */,
+				979C38EF19EF30F2000038B7 /* rotate.png in Resources */,
 				9759044E19C77C32005C85F1 /* 10.jpg in Resources */,
 				9759041919C77AC3005C85F1 /* Images.xcassets in Resources */,
+				979C38EA19EF30F2000038B7 /* road@2x.png in Resources */,
 				979C38D519E9DF3E000038B7 /* heart-empty.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,10 +478,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C1F31E19C7C9BE001A8A32 /* BLCUser.m in Sources */,
+				979C38F319EF313E000038B7 /* BLCCameraToolbar.m in Sources */,
 				979C38C619DF01D3000038B7 /* BLCMediaFullScreenAnimator.m in Sources */,
 				979C38CE19E9BFD0000038B7 /* BLCLikeButton.m in Sources */,
 				9759043719C77B0D005C85F1 /* BLCImageTableViewController.m in Sources */,
 				9759041719C77AC3005C85F1 /* BLCAppDelegate.m in Sources */,
+				97305D0319F1DAE3000681A3 /* UIImage+BLCImageUtilities.m in Sources */,
 				9759041319C77AC3005C85F1 /* main.m in Sources */,
 				97C1F32119C7CA72001A8A32 /* BLCMedia.m in Sources */,
 				979C38CB19E9B8FA000038B7 /* BLCCircleSpinnerView.m in Sources */,
@@ -442,6 +491,7 @@
 				979C38C319DEF813000038B7 /* BLCMediaFullScreenViewController.m in Sources */,
 				97C1F32A19CD2B92001A8A32 /* BLCMediaTableViewCell.m in Sources */,
 				97C1F32719C7D0C8001A8A32 /* BLCDataSource.m in Sources */,
+				97305CFD19F1B63E000681A3 /* BLCCameraViewController.m in Sources */,
 				97C1F32D19D5E84B001A8A32 /* BLCLoginViewController.m in Sources */,
 				979C38E019EC9784000038B7 /* BLCComposeCommentView.m in Sources */,
 			);
